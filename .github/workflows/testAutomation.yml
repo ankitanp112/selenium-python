@@ -24,6 +24,7 @@ jobs:
     - run: |
         python -m pytest runner.py --alluredir ./results
         allure serve ./results
+        chmod 777 ./results
         
         
     - name: set output
@@ -32,8 +33,8 @@ jobs:
       run: echo "artifactPath=./results" >> $GITHUB_OUTPUT
 
   
-    - uses: actions/upload-artifacts@v3
+    - uses: actions/upload-artifacts@v4
       if: success() || failure()
       with:
             name: test-report
-            path: ${{steps.results.outputs.artifactPath}}
+            path: ${{ steps.results.outputs.artifactPath }}

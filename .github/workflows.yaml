@@ -22,15 +22,15 @@ jobs:
       if: success() || failure()
     - run: |
         python -m pytest runner.py --alluredir ./results
-        allure serve ./results
+        
         
     -name: set output
     if: success() || failure()
     id: results
-    run: echo "artifactPath=results/" >> $GITHUB_OUTPUT
+    run: echo "artifactPath=allure serve ./results" >> $GITHUB_OUTPUT
 
-    -uses: actions/upload-artifacts@v3
+    -uses: actions/upload-artifacts@v4
      if: success() || failure()
      with:
-     name: test-report
-     path: ${{steps.results.outputs.artifactPath}}
+        name: test-report
+        path: ${{steps.results.outputs.artifactPath}}

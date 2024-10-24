@@ -9,7 +9,7 @@ class testRunner(unittest.TestCase):
     driver = webdriver.Edge()
 
     def test1(self):
-        r.testPythonSelenium(self.driver
+        r.testPythonSelenium(self.driver)
         return True
 
     if __name__ == "__main__":
